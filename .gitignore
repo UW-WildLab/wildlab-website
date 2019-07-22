@@ -1,0 +1,4 @@
+.DS_Store
+private/*
+build/*
+node_modules

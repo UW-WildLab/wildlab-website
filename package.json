@@ -1,0 +1,60 @@
+{
+  "name": "wildlab-website-ui",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "bootstrap": "^4.3.1",
+    "moment": "^2.24.0",
+    "react": "^16.7.0",
+    "react-big-calendar": "^0.22.0",
+    "react-dom": "^16.7.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^3.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/",
+    "prettier": "prettier --single-quote --write '{,!(node_modules|docs|build)/**/}*.{js,css,json}'"
+  },
+  "jest": {
+    "setupFiles": [
+      "./src/tests/setup.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|svg)$": "jest-transform-stub",
+      "\\.(png|css|less)$": "identity-obj-proxy"
+    }
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.8.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "eslint": "^5.6.0",
+    "eslint-plugin-react": "^7.12.3",
+    "identity-obj-proxy": "*",
+    "jest-transform-stub": "*",
+    "prettier": "^1.15.3",
+    "react-bootstrap": "^1.0.0-beta.10",
+    "react-fontawesome": "*",
+    "react-jsonschema-form": "^1.2.0",
+    "react-router-bootstrap": "*",
+    "react-spinkit": "*",
+    "react-test-renderer": "^16.7.0"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

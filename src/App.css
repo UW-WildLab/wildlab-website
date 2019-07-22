@@ -1,0 +1,27 @@
+body {
+}
+
+section {
+  display: flex;
+  padding-top: 30px;
+}
+
+section:last-of-type {
+  padding-bottom: 30px;
+}
+
+section.no-padding {
+  padding: 0;
+}
+
+section.bg {
+  background-color: #d0dde5;
+}
+
+.loading {
+  margin: 0 auto;
+}
+
+.custom-full-width-element {
+  margin-top: 30px;
+}

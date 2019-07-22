@@ -1,0 +1,33 @@
+.footer {
+  padding: 25px 0;
+  text-align: center;
+  background-color: #24305e;
+  color: white;
+  margin: 0;
+  width: 100%;
+}
+
+.footer .row {
+  margin: 10px auto;
+}
+
+.footer .row.social-icons div[class^='col-'] a {
+  font-size: 30px;
+  color: #a8d0e6;
+}
+
+.footer .row.social-icons div[class^='col-']:first-of-type {
+  text-align: right;
+}
+
+.footer .row.social-icons div[class^='col-']:last-of-type {
+  text-align: left;
+}
+
+.footer .row .signature {
+  font-family: 'Pacifico', cursive;
+  font-size: 18px;
+  color: #a8d0e6;
+  letter-spacing: 0.2rem;
+  padding: 0 3px;
+}
