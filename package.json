@@ -21,7 +21,15 @@
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
     "lint": "eslint src/",
+    "lint-staged": "lint-staged",
     "prettier": "prettier --single-quote --write '{,!(node_modules|docs|build)/**/}*.{js,css,json}'"
+  },
+  "pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.{js,json,css}": [
+      "npm run prettier",
+      "git add -u"
+    ]
   },
   "jest": {
     "setupFiles": [
@@ -43,6 +51,8 @@
     "eslint-plugin-react": "^7.12.3",
     "identity-obj-proxy": "*",
     "jest-transform-stub": "*",
+    "lint-staged": "^9.2.1",
+    "pre-commit": "^1.2.2",
     "prettier": "^1.15.3",
     "react-bootstrap": "^1.0.0-beta.10",
     "react-fontawesome": "*",
