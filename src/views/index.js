@@ -1,3 +1,4 @@
+export { default as About } from './About';
 export { default as Calendar } from './Calendar';
 export { default as DataLoadError } from './DataLoadError';
 export { default as FAQ } from './FAQ';
