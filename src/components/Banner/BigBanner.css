@@ -1,46 +1,53 @@
-#home-banner {
-  position: relative;
-}
-
 #home-banner .banner-container {
-  text-align: center;
-  padding: 100px 0;
-  position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url('Banner.jpg');
+  background-image: url('/img/parallax/img1.png');
 }
 
-#home-banner .banner-container .banner-shade {
+#home-banner .banner-container .container {
+  position: relative;
+}
+
+#home-banner .custom-banner-title {
+}
+
+#home-banner .custom-news-section {
   position: absolute;
-  top: -1px;
-  width: 100%;
-  height: 100%;
-  background: rgb(0, 0, 0, 0.65);
+  top: 20%;
+  right: 0;
+  z-index: 9999;
+  float: right;
+  width: 300px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
 }
 
-#home-banner .banner-container .banner-content {
-  z-index: 2;
-  position: relative;
+#home-banner .custom-news-section p {
   color: white;
+  font-weight: thin;
+  margin: 15px 0;
 }
 
-#home-banner .banner-container .banner-content * {
-  margin-top: 20px;
-  margin-bottom: 20px;
+#home-banner .custom-news-section p:first-of-type {
+  margin-top: 0;
 }
 
-#home-banner .banner-container .banner-content h1 {
-  font-size: 60px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 40px;
+#home-banner .custom-news-section p:last-of-type {
+  margin-bottom: 0;
 }
 
-#home-banner .banner-container .banner-content p {
-  font-size: 20px;
-  text-align: center;
-  letter-spacing: 0.1rem;
+#home-banner .custom-news-section p .news-title {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 767px) and (min-width: 480px) {
+  #home-banner .banner-container .container {
+    width: 100%;
+    max-width: none;
+    padding: 30px;
+    margin: 0;
+    margin-top: 100px;
+  }
+
+  #home-banner .custom-news-section {
+    display: none;
+  }
 }

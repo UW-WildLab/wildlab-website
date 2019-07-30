@@ -10,7 +10,7 @@ import withSection from '../HOC/withSection';
 // } from '../../components';
 // import { filterDatabaseByType } from '../../utils';
 
-//import './BigBanner.css';
+import './BigBanner.css';
 
 // { db: { home_banner: banner } }
 
@@ -20,14 +20,11 @@ const BigBanner = () => {
   // const buttons = filterDatabaseByType(banner, 'button');
 
   return (
-    <div
-      className="section background_size_cover background_position_center"
-      style={{ backgroundImage: 'url(/img/parallax/img1.png)' }}
-    >
+    <div className="section background_size_cover background_position_center banner-container">
       <div className="section bg_greydark_alpha_gradient_2">
         <div className="section height_570"></div>
-        <div className="container clearfix display_none_all_iphone">
-          <div className="grid grid_12">
+        <div className="container clearfix">
+          <div className="grid grid_12 custom-banner-title">
             <strong className="color_white font_size_60 first_font">
               In our Lab you can
             </strong>
@@ -36,6 +33,28 @@ const BigBanner = () => {
                 learn something blah blah
               </strong>
             </div>
+          </div>
+          <div className="grid grid_12 custom-news-section">
+            <p>
+              <span className="news-title">12th August 2019.</span> Something
+              happened
+            </p>
+            <p>
+              <span className="news-title">12th August 2019.</span> Something
+              happened
+            </p>
+            <p>
+              <span className="news-title">12th August 2019.</span> Something
+              happened
+            </p>
+            <p>
+              <span className="news-title">12th August 2019.</span> Something
+              happened
+            </p>
+            <p>
+              <span className="news-title">12th August 2019.</span> Something
+              happened
+            </p>
           </div>
         </div>
         <div className="section height_50"></div>
