@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Grid } from 'react-bootstrap';
+//import Grid from 'react-bootstrap/Grid';
 import classNames from 'classnames';
 
 const withSection = id => WrappedComponent =>
@@ -21,7 +21,7 @@ const withSection = id => WrappedComponent =>
 
       return (
         <section id={id} className={sectionClass}>
-          {fullWidth ? this.getComponent() : <Grid>{this.getComponent()}</Grid>}
+          {fullWidth ? this.getComponent() : <div className="grid grid_12">{this.getComponent()}</div>}
         </section>
       );
     }
