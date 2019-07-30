@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router';
 import {
   About,
   Calendar,
-  Contact,
   FAQ,
   Home,
   News,
@@ -21,7 +20,6 @@ const Routes = () => (
     <Route exact path="/" component={Home} />
     <Route exact path="/about" component={About} />
     <Route exact path="/calendar" component={Calendar} />
-    <Route exact path="/contact" component={Contact} />
     <Route exact path="/faqs" component={FAQ} />
     <Route exact path="/home" component={Home} />
     <Route exact path="/news" component={News} />

@@ -32,9 +32,6 @@ const MenuItems = ({ isFooter }) => (
         <DataLink to="/calendar">Calendar</DataLink>
       </li>
     )}
-    <li>
-      <DataLink to="/contact">Contact Us</DataLink>
-    </li>
   </ul>
 );
 

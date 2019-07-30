@@ -21,7 +21,11 @@ const withSection = id => WrappedComponent =>
 
       return (
         <section id={id} className={sectionClass}>
-          {fullWidth ? this.getComponent() : <div className="grid grid_12">{this.getComponent()}</div>}
+          {fullWidth ? (
+            this.getComponent()
+          ) : (
+            <div className="grid grid_12">{this.getComponent()}</div>
+          )}
         </section>
       );
     }
