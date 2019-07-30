@@ -22,9 +22,6 @@ const MenuItems = ({ isFooter }) => (
       <DataLink to="/news">News</DataLink>
     </li>
     <li>
-      <DataLink to="/about">About</DataLink>
-    </li>
-    <li>
       <DataLink to="/faqs">FAQs</DataLink>
     </li>
     {isFooter && (
