@@ -18,7 +18,4 @@ prettier:
 lint:
 	@npm run lint
 
-server:
-	@cd server && npm install && npm start
-
-.PHONY: start ready build test prettier lint server
+.PHONY: start ready build test prettier lint

@@ -48,6 +48,13 @@ const PublicationsTable = () => (
               <div className="section border_1_solid_grey">
                 <div className="section position_relative">
                   <img alt="" className="section" src="/img/courses/img2.png" />
+                  <div className="bg_greydark_alpha position_absolute left_0 height_100_percentage width_100_percentage padding_30 box_sizing_border_box"></div>
+                  <DataLink
+                    className="position_absolute right_20 top_20 display_inline_block color_white bg_green first_font padding_8 border_radius_3 font_size_13 z_index_9"
+                    to="#"
+                  >
+                    BEST PAPER
+                  </DataLink>
                 </div>
 
                 <div className="section padding_20 box_sizing_border_box">

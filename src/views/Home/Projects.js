@@ -117,6 +117,9 @@ const Projects = () => {
           </div>
         </div>
         <div className="section text_align_center custom-full-width-element">
+          <p>The projects are made possible by the funding from X, Y, Z.</p>
+        </div>
+        <div className="section text_align_center custom-full-width-element">
           <DataLink
             className="display_inline_block font_size_13 color_white bg_blue first_font padding_8 border_radius_3"
             to="/projects"

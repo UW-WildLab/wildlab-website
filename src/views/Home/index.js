@@ -6,8 +6,8 @@ import { BigBanner, withTitle } from '../../components';
 const Home = () => (
   <div>
     <BigBanner fullWidth noPadding />
-    <Publications fullWidth />
     <Projects fullWidth />
+    <Publications fullWidth />
   </div>
 );
 
