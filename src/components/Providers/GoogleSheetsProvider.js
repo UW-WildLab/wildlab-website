@@ -15,8 +15,6 @@ class GoogleSheetsProvider extends Component {
   constructor() {
     super();
     this.state = { db: null };
-    this.spreadSheetId = '1_qSMIAFS0k_ItwzPXQJg4uU_3F_Vwyz6cOvEuWkor3o';
-    this.apiKey = '';
   }
 
   componentDidMount() {
@@ -31,7 +29,7 @@ class GoogleSheetsProvider extends Component {
   }
 
   getUrl = () =>
-    `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadSheetId}?includeGridData=true&fields=sheets(data%2FrowData%2Fvalues%2FformattedValue%2Cproperties%2Ftitle)&key=${this.apiKey}`;
+    `https://sheets.googleapis.com/v4/spreadsheets/${process.env.REACT_APP_GOOGLE_SHEETS_DOC_ID}?includeGridData=true&fields=sheets(data%2FrowData%2Fvalues%2FformattedValue%2Cproperties%2Ftitle)&key=${process.env.REACT_APP_GOOGLE_SHEETS_API_KEY}`;
 
   processData = ({ sheets }) => {
     let result = {};
