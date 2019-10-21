@@ -2,14 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import flowRight from 'lodash/flowRight';
-import { withSection, withTitle, DataLink } from '../../components';
+import {
+  withSection,
+  withTitle,
+  DataLink,
+  withGoogleSheets
+} from '../../components';
+import { getDataById } from '../../utils';
+
+import './PersonInfo.css';
 
 class PersonInfo extends Component {
   static propTypes = {
+    db: PropTypes.shape({
+      publications: PropTypes.arrayOf(PropTypes.object)
+    }),
     person: PropTypes.object.isRequired
   };
 
-  state = { selectedTab: 'projects' };
+  state = { selectedTab: 'publications' };
 
   selectTab = tab => {
     if (this.state.selectedTab !== tab) {
@@ -18,7 +29,15 @@ class PersonInfo extends Component {
   };
 
   render() {
-    const { person } = this.props;
+    const {
+      db: { publications },
+      person
+    } = this.props;
+    const publicationsByAuthor = getDataById(
+      publications,
+      'authors',
+      person.id
+    );
 
     return (
       <div className="section">
@@ -98,7 +117,7 @@ class PersonInfo extends Component {
                           className="display_inline_block bg_grey margin_right_20 border_1_solid_grey first_font padding_8 border_radius_3 font_size_13"
                           onClick={() => this.selectTab('publications')}
                         >
-                          9
+                          {publicationsByAuthor.length}
                         </span>
                       </h4>
                     </li>
@@ -224,98 +243,19 @@ class PersonInfo extends Component {
                     }}
                   >
                     <div className="section">
-                      <div className="section">
-                        <div className="width_25_percentage width_50_percentage_all_iphone padding_20 float_left box_sizing_border_box">
-                          <div className="section box_sizing_border_box">
-                            <div className="section position_relative">
-                              <img
-                                alt=""
-                                className="section"
-                                src="/img/avatar/avatar-chef-2.png"
-                              />
-                              <div className="bg_greydark_alpha_gradient_3 position_absolute left_0 height_100_percentage width_100_percentage box_sizing_border_box">
-                                <div className="position_absolute bottom_20 width_100_percentage padding_botttom_0 padding_20 box_sizing_border_box text_align_center">
-                                  <h5 className="color_white">
-                                    <strong>Jane Goleman</strong>
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                      {publicationsByAuthor.map(p => (
+                        <div key={p.id} className="person-publications-table">
+                          <DataLink to={p.url}>
+                            <strong>{p.title.trim()}</strong>
+                          </DataLink>
+                          <span className="conference-text">
+                            {' '}
+                            ({p.conference}
+                            {"'"}
+                            {p.year})
+                          </span>
                         </div>
-                        <div className="width_25_percentage width_50_percentage_all_iphone padding_20 float_left box_sizing_border_box">
-                          <div className="section box_sizing_border_box">
-                            <div className="section position_relative">
-                              <img
-                                alt=""
-                                className="section"
-                                src="/img/avatar/avatar-chef-3.png"
-                              />
-                              <div className="bg_greydark_alpha_gradient_3 position_absolute left_0 height_100_percentage width_100_percentage box_sizing_border_box">
-                                <div className="position_absolute bottom_20 width_100_percentage padding_botttom_0 padding_20 box_sizing_border_box text_align_center">
-                                  <h5 className="color_white">
-                                    <strong>Jane Mgrayan</strong>
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="width_25_percentage width_50_percentage_all_iphone padding_20 float_left box_sizing_border_box">
-                          <div className="section box_sizing_border_box">
-                            <div className="section position_relative">
-                              <img
-                                alt=""
-                                className="section"
-                                src="/img/avatar/avatar-chef-4.png"
-                              />
-                              <div className="bg_greydark_alpha_gradient_3 position_absolute left_0 height_100_percentage width_100_percentage box_sizing_border_box">
-                                <div className="position_absolute bottom_20 width_100_percentage padding_botttom_0 padding_20 box_sizing_border_box text_align_center">
-                                  <h5 className="color_white">
-                                    <strong>Jack Johnson</strong>
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="width_25_percentage width_50_percentage_all_iphone padding_20 float_left box_sizing_border_box">
-                          <div className="section box_sizing_border_box">
-                            <div className="section position_relative">
-                              <img
-                                alt=""
-                                className="section"
-                                src="/img/avatar/avatar-chef-5.png"
-                              />
-                              <div className="bg_greydark_alpha_gradient_3 position_absolute left_0 height_100_percentage width_100_percentage box_sizing_border_box">
-                                <div className="position_absolute bottom_20 width_100_percentage padding_botttom_0 padding_20 box_sizing_border_box text_align_center">
-                                  <h5 className="color_white">
-                                    <strong>Nick Hopiness</strong>
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="width_25_percentage width_50_percentage_all_iphone padding_20 float_left box_sizing_border_box">
-                          <div className="section box_sizing_border_box">
-                            <div className="section position_relative">
-                              <img
-                                alt=""
-                                className="section"
-                                src="/img/avatar/avatar-chef-6.png"
-                              />
-                              <div className="bg_greydark_alpha_gradient_3 position_absolute left_0 height_100_percentage width_100_percentage box_sizing_border_box">
-                                <div className="position_absolute bottom_20 width_100_percentage padding_botttom_0 padding_20 box_sizing_border_box text_align_center">
-                                  <h5 className="color_white">
-                                    <strong>Steve Morgan</strong>
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -325,7 +265,7 @@ class PersonInfo extends Component {
           </div>
           <div className="width_33_percentage width_100_percentage_responsive float_left">
             <div className="section padding_15 box_sizing_border_box">
-              <table className="section">
+              <table className="person-info-table section">
                 <tbody>
                   {person.email && (
                     <tr className="border_bottom_2_solid_grey">
@@ -333,11 +273,11 @@ class PersonInfo extends Component {
                         <FontAwesome name="envelope" size="2x" />
                       </td>
                       <td className="padding_20 ">
-                        <h4 className=" text_align_right">
+                        <span className="person-info-table-text text_align_right">
                           <DataLink to={`mailto:${person.email}`}>
                             {person.email}
                           </DataLink>
-                        </h4>
+                        </span>
                       </td>
                     </tr>
                   )}
@@ -347,11 +287,11 @@ class PersonInfo extends Component {
                         <FontAwesome name="globe" size="2x" />
                       </td>
                       <td className="padding_20 ">
-                        <h4 className=" text_align_right">
+                        <span className="person-info-table-text text_align_right">
                           <DataLink to={person.website}>
                             {person.website}
                           </DataLink>
-                        </h4>
+                        </span>
                       </td>
                     </tr>
                   )}
@@ -361,13 +301,13 @@ class PersonInfo extends Component {
                         <FontAwesome name="twitter" size="2x" />
                       </td>
                       <td className="padding_20">
-                        <h4 className=" text_align_right">
+                        <span className="person-info-table-text text_align_right">
                           <DataLink
                             to={`https://twitter.com/${person.twitter}`}
                           >
                             {`@${person.twitter}`}
                           </DataLink>
-                        </h4>
+                        </span>
                       </td>
                     </tr>
                   )}
@@ -377,11 +317,11 @@ class PersonInfo extends Component {
                         <FontAwesome name="linkedin" size="2x" />
                       </td>
                       <td className="padding_20 ">
-                        <h4 className=" text_align_right">
+                        <span className="person-info-table-text text_align_right">
                           <DataLink to={person.linkedin}>
                             {person.linkedin}
                           </DataLink>
-                        </h4>
+                        </span>
                       </td>
                     </tr>
                   )}
@@ -398,5 +338,6 @@ class PersonInfo extends Component {
 
 export default flowRight(
   withTitle({ path: 'person.name' }),
-  withSection('person-info')
+  withSection('person-info'),
+  withGoogleSheets('publications')
 )(PersonInfo);

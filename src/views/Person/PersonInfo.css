@@ -1,0 +1,18 @@
+.person-info-table td {
+  word-break: break-all;
+}
+
+.person-publications-table {
+  margin-bottom: 20px;
+  padding-left: 20px;
+  font-size: 20px;
+}
+
+.person-publications-table:last-of-type {
+  margin-bottom: 0;
+}
+
+.person-publications-table .conference-text {
+  font-size: 15px;
+  color: #888;
+}

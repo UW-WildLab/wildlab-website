@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const isExternalLink = to => startsWith(to, 'http');
 
-const DataLink = ({ to, children, ...rest }) =>
+const DataLink = ({ to = '#', children, ...rest }) =>
   isExternalLink(to) ? (
     <a href={to} target="_blank" rel="noopener noreferrer" {...rest}>
       {children}
