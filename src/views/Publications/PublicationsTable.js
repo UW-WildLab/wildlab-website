@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
 import { DataLink, withSection } from '../../components';
 import { withGoogleSheets } from '../../components';
-import { getAuthors } from '../../utils';
+import { displayAuthors, getAuthors } from '../../utils';
 
 class PublicationsTable extends Component {
   static propTypes = {
@@ -15,7 +15,8 @@ class PublicationsTable extends Component {
 
   publications = this.props.db.publications.map(p => ({
     ...p,
-    authors: getAuthors(this.props.db.people, p.authors)
+    authors: getAuthors(this.props.db.people, p.authors),
+    authorNames: getAuthors(this.props.db.people, p.authors, false)
   }));
 
   constructor(props) {
@@ -33,7 +34,7 @@ class PublicationsTable extends Component {
           p =>
             p.title.toLowerCase().includes(value) ||
             p.conference.toLowerCase().includes(value) ||
-            p.authors.toLowerCase().includes(value)
+            p.authorNames.some(a => a.toLowerCase().includes(value))
         ),
         searchQuery: value
       });
@@ -65,7 +66,7 @@ class PublicationsTable extends Component {
             </div>
 
             <div className="width_100_percentage">
-              {publications.map((p, i) => (
+              {publications.reverse().map((p, i) => (
                 <div
                   key={p.id}
                   style={{ clear: i % 3 === 0 ? 'both' : 'none' }}
@@ -101,7 +102,7 @@ class PublicationsTable extends Component {
                         </h3>
                       </div>
                       <div className="section padding_10_20 box_sizing_border_box bg_grey border_top_1_solid_grey text_align_center">
-                        {p.authors}
+                        {displayAuthors(p.authors)}
                       </div>
                     </div>
                   </div>

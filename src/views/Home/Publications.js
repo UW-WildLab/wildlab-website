@@ -1,10 +1,25 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
 import { DataLink, withSection } from '../../components';
-//import { GridTable, withGoogleSheets } from '../../components';
+import { withGoogleSheets } from '../../components';
+import { displayAuthors, getAuthors } from '../../utils';
 
-const Publications = () => {
+const Publications = ({ db: { people, publications } }) => {
+  publications = publications
+    .map(p => ({
+      ...p,
+      authors: getAuthors(people, p.authors)
+    }))
+    .reverse();
+
+  const highlightedPublication =
+    publications.find(p => p.highlighted === 'Y') || publications[0];
+
+  publications = publications
+    .filter(p => p.id !== highlightedPublication.id)
+    .slice(0, 4);
+
   return (
     <div className="section">
       <div className="container clearfix">
@@ -19,113 +34,73 @@ const Publications = () => {
               <div className="section position_relative">
                 <img alt="" className="section" src="/img/courses/img20.png" />
                 <div className="bg_greydark_alpha position_absolute left_0 height_100_percentage width_100_percentage padding_30 box_sizing_border_box"></div>
-                <DataLink
-                  className="position_absolute right_20 top_20 display_inline_block color_white bg_green first_font padding_8 border_radius_3 font_size_13 z_index_9"
-                  to="#"
-                >
-                  BEST PAPER
-                </DataLink>
+                {highlightedPublication.best_paper === 'Y' && (
+                  <DataLink
+                    className="position_absolute right_20 top_20 display_inline_block color_white bg_green first_font padding_8 border_radius_3 font_size_13 z_index_9"
+                    to="#"
+                  >
+                    BEST PAPER
+                  </DataLink>
+                )}
               </div>
 
               <div className="section padding_20 box_sizing_border_box">
                 <h3 style={{ marginBottom: '10px' }}>
                   <DataLink className="color_greydark first_font" to="#">
-                    Publication 0
+                    {highlightedPublication.title}
                   </DataLink>
                 </h3>
-                <p>
-                  Abstract: Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit. Aenean egestas magna at porttitor vehicula. Nullam augue
-                  augue, dignissim id bibendum id, consequat et leo.
-                </p>
+                <p>{highlightedPublication.abstract}</p>
               </div>
               <div className="section padding_20 box_sizing_border_box bg_grey border_top_1_solid_grey text_align_center">
-                Author 1, Author 2, Author 3, Author 4
+                {displayAuthors(highlightedPublication.authors)}
               </div>
             </div>
           </div>
         </div>
         <div className="width_50_percentage width_100_percentage_responsive float_left">
-          <div className="width_50_percentage width_100_percentage_all_iphone float_left">
-            <div className="section padding_15 box_sizing_border_box">
-              <div className="section border_1_solid_grey">
-                <div className="section position_relative">
-                  <img alt="" className="section" src="/img/courses/img2.png" />
-                </div>
+          {publications.map((p, i) => (
+            <div
+              key={p.id}
+              style={{ clear: i % 2 === 0 ? 'both' : 'none' }}
+              className="width_50_percentage width_100_percentage_all_iphone float_left"
+            >
+              <div className="section padding_15 box_sizing_border_box">
+                <div className="section border_1_solid_grey">
+                  <div className="section position_relative">
+                    <img
+                      alt=""
+                      className="section"
+                      src="/img/courses/img2.png"
+                    />
+                    <div className="bg_greydark_alpha position_absolute left_0 height_100_percentage width_100_percentage padding_30 box_sizing_border_box"></div>
+                    {p.best_paper === 'Y' && (
+                      <DataLink
+                        className="position_absolute right_20 top_10 display_inline_block color_white bg_green first_font padding_8 border_radius_3 font_size_11 z_index_9"
+                        to="#"
+                      >
+                        BEST PAPER
+                      </DataLink>
+                    )}
+                  </div>
 
-                <div className="section padding_20 box_sizing_border_box">
-                  <h3>
-                    <DataLink className="color_greydark first_font" to="#">
-                      Publication Title 1
-                    </DataLink>
-                  </h3>
-                </div>
-                <div className="section padding_10_20 box_sizing_border_box bg_grey border_top_1_solid_grey text_align_center">
-                  Author 1, Author 2
+                  <div className="section padding_20 box_sizing_border_box">
+                    <h3>
+                      <DataLink
+                        className="color_greydark first_font"
+                        to={p.url}
+                      >
+                        {p.title}
+                      </DataLink>
+                    </h3>
+                  </div>
+                  <div className="section padding_10_20 box_sizing_border_box bg_grey border_top_1_solid_grey text_align_center">
+                    {displayAuthors(p.authors)}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="width_50_percentage width_100_percentage_all_iphone float_left">
-            <div className="section padding_15 box_sizing_border_box">
-              <div className="section border_1_solid_grey">
-                <div className="section position_relative">
-                  <img alt="" className="section" src="/img/courses/img2.png" />
-                </div>
-
-                <div className="section padding_20 box_sizing_border_box">
-                  <h3>
-                    <DataLink className="color_greydark first_font" to="#">
-                      Publication Title 2
-                    </DataLink>
-                  </h3>
-                </div>
-                <div className="section padding_10_20 box_sizing_border_box bg_grey border_top_1_solid_grey text_align_center">
-                  Author 1, Author 2
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="width_50_percentage width_100_percentage_all_iphone float_left">
-            <div className="section padding_15 box_sizing_border_box">
-              <div className="section border_1_solid_grey">
-                <div className="section position_relative">
-                  <img alt="" className="section" src="/img/courses/img2.png" />
-                </div>
-
-                <div className="section padding_20 box_sizing_border_box">
-                  <h3>
-                    <DataLink className="color_greydark first_font" to="#">
-                      Publication Title 3
-                    </DataLink>
-                  </h3>
-                </div>
-                <div className="section padding_10_20 box_sizing_border_box bg_grey border_top_1_solid_grey text_align_center">
-                  Author 1, Author 2
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="width_50_percentage width_100_percentage_all_iphone float_left">
-            <div className="section padding_15 box_sizing_border_box">
-              <div className="section border_1_solid_grey">
-                <div className="section position_relative">
-                  <img alt="" className="section" src="/img/courses/img2.png" />
-                </div>
-
-                <div className="section padding_20 box_sizing_border_box">
-                  <h3>
-                    <DataLink className="color_greydark first_font" to="#">
-                      Publication Title 4
-                    </DataLink>
-                  </h3>
-                </div>
-                <div className="section padding_10_20 box_sizing_border_box bg_grey border_top_1_solid_grey text_align_center">
-                  Author 1, Author 2
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
         <div className="section text_align_center custom-full-width-element">
           <DataLink
@@ -140,7 +115,15 @@ const Publications = () => {
   );
 };
 
+Publications.propTypes = {
+  db: PropTypes.shape({
+    people: PropTypes.arrayOf(PropTypes.object),
+    publications: PropTypes.arrayOf(PropTypes.object)
+  })
+};
+
 export default flowRight(
-  //withGoogleSheets('executive_committee'),
+  withGoogleSheets('publications'),
+  withGoogleSheets('people'),
   withSection('publications')
 )(Publications);

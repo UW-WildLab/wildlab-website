@@ -1,5 +1,8 @@
+import React from 'react';
 import filter from 'lodash/filter';
+import kebabCase from 'lodash/kebabCase';
 import isUndefined from 'lodash/isUndefined';
+import { DataLink } from './components';
 
 export const filterDatabaseByType = (db, type, index) =>
   isUndefined(index)
@@ -11,23 +14,19 @@ export const getDataByForeignKey = (table, ids = []) =>
     .map(id => table.find(t => t.id === id.toString()))
     .filter(f => f);
 
-export const getAuthors = (people, ids = []) => {
-  const authors = getDataByForeignKey(people, ids).map(d => d.name.trim());
+export const getAuthors = (people, ids = [], component = true) =>
+  getDataByForeignKey(people, ids).map(d =>
+    component ? (
+      <DataLink key={d.id} to={`/people/${kebabCase(d.name.trim())}-${d.id}`}>
+        {d.name.trim()}
+      </DataLink>
+    ) : (
+      d.name.trim()
+    )
+  );
 
-  if (authors.length === 0) {
-    return 'No author found';
-  } else if (authors.length === 1) {
-    return authors[0];
-  } else if (authors.length === 2) {
-    return `${authors[0]} and ${authors[1]}`;
-  } else {
-    return (
-      authors.slice(0, authors.length - 1).join(', ') +
-      ', and ' +
-      authors[authors.length - 1]
-    );
-  }
-};
+export const getPublications = (publications, ids = []) =>
+  getDataByForeignKey(publications, ids).map(d => d.title.trim());
 
 export const formatPublicationsTitle = publications =>
   publications.map(p => ({
@@ -37,3 +36,29 @@ export const formatPublicationsTitle = publications =>
 
 export const getDataById = (table, field, id) =>
   table.filter(t => JSON.parse(t[field]).includes(parseInt(id)));
+
+export const displayAuthors = authors =>
+  authors.length > 0 ? (
+    authors.map((a, i) => {
+      let joiner = '';
+
+      if (authors.length > 1) {
+        if (authors.length === 2 && i === 0) {
+          joiner = ' and ';
+        } else if (i < authors.length - 2) {
+          joiner = ', ';
+        } else if (i !== authors.length - 1) {
+          joiner = ', and ';
+        }
+      }
+
+      return (
+        <span key={i} style={{ color: '#999' }}>
+          {a}
+          {joiner}
+        </span>
+      );
+    })
+  ) : (
+    <span style={{ color: '#999' }}>No authors found</span>
+  );

@@ -1,10 +1,16 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
+import kebabCase from 'lodash/kebabCase';
 import { DataLink, withSection } from '../../components';
-//import { GridTable, withGoogleSheets } from '../../components';
+import { withGoogleSheets } from '../../components';
 
-const Projects = () => {
+const Projects = ({ db: { projects } }) => {
+  const highlightedProject =
+    projects.find(p => p.highlighted === 'Y') || projects[0];
+
+  projects = projects.filter(p => p.id !== highlightedProject.id).slice(0, 4);
+
   return (
     <div className="section">
       <div className="container clearfix">
@@ -14,83 +20,35 @@ const Projects = () => {
           </h1>
         </div>
         <div className="width_50_percentage width_100_percentage_responsive float_left">
-          <div className="width_50_percentage width_100_percentage_all_iphone float_left">
-            <div className="section padding_15 box_sizing_border_box">
-              <div className="section border_1_solid_grey">
-                <div className="section position_relative">
-                  <img alt="" className="section" src="/img/courses/img2.png" />
-                </div>
-                <div className="section padding_20 box_sizing_border_box text_align_center">
-                  <h3>
-                    <DataLink
-                      className="color_greydark first_font"
-                      to="/projects/some-project"
-                    >
-                      Project Title 1
-                    </DataLink>
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="width_50_percentage width_100_percentage_all_iphone float_left">
-            <div className="section padding_15 box_sizing_border_box">
-              <div className="section border_1_solid_grey">
-                <div className="section position_relative">
-                  <img alt="" className="section" src="/img/courses/img2.png" />
-                </div>
-                <div className="section padding_20 box_sizing_border_box text_align_center">
-                  <h3>
-                    <DataLink
-                      className="color_greydark first_font"
-                      to="/projects/some-project"
-                    >
-                      Project Title 2
-                    </DataLink>
-                  </h3>
+          {projects.map((p, i) => (
+            <div
+              key={p.id}
+              style={{ clear: i % 2 === 0 ? 'both' : 'none' }}
+              className="width_50_percentage width_100_percentage_all_iphone float_left"
+            >
+              <div className="section padding_15 box_sizing_border_box">
+                <div className="section border_1_solid_grey">
+                  <div className="section position_relative">
+                    <img
+                      alt=""
+                      className="section"
+                      src="/img/courses/img2.png"
+                    />
+                  </div>
+                  <div className="section padding_20 box_sizing_border_box text_align_center">
+                    <h3>
+                      <DataLink
+                        className="color_greydark first_font"
+                        to={`/projects/${kebabCase(p.name)}-${p.id}`}
+                      >
+                        {p.name}
+                      </DataLink>
+                    </h3>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="width_50_percentage width_100_percentage_all_iphone float_left">
-            <div className="section padding_15 box_sizing_border_box">
-              <div className="section border_1_solid_grey">
-                <div className="section position_relative">
-                  <img alt="" className="section" src="/img/courses/img2.png" />
-                </div>
-
-                <div className="section padding_20 box_sizing_border_box text_align_center">
-                  <h3>
-                    <DataLink
-                      className="color_greydark first_font"
-                      to="/projects/some-project"
-                    >
-                      Project Title 3
-                    </DataLink>
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="width_50_percentage width_100_percentage_all_iphone float_left">
-            <div className="section padding_15 box_sizing_border_box">
-              <div className="section border_1_solid_grey">
-                <div className="section position_relative">
-                  <img alt="" className="section" src="/img/courses/img2.png" />
-                </div>
-                <div className="section padding_20 box_sizing_border_box text_align_center">
-                  <h3>
-                    <DataLink
-                      className="color_greydark first_font"
-                      to="/projects/some-project"
-                    >
-                      Project Title 4
-                    </DataLink>
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
         <div className="width_50_percentage width_100_percentage_responsive float_left">
           <div className="section padding_15 box_sizing_border_box">
@@ -103,15 +61,14 @@ const Projects = () => {
                 <h3 style={{ marginBottom: '14px' }}>
                   <DataLink
                     className="color_greydark first_font"
-                    to="/projects/some-project"
+                    to={`/projects/${kebabCase(highlightedProject.name)}-${
+                      highlightedProject.id
+                    }`}
                   >
-                    Project 0
+                    {highlightedProject.name}
                   </DataLink>
                 </h3>
-                <p>
-                  Abstract: Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit. Aenean egestas magna at porttitor vehicula.
-                </p>
+                <p>{highlightedProject.description}</p>
               </div>
             </div>
           </div>
@@ -132,7 +89,13 @@ const Projects = () => {
   );
 };
 
+Projects.propTypes = {
+  db: PropTypes.shape({
+    projects: PropTypes.arrayOf(PropTypes.object)
+  })
+};
+
 export default flowRight(
-  //withGoogleSheets('executive_committee'),
+  withGoogleSheets('projects'),
   withSection('projects')
 )(Projects);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import flowRight from 'lodash/flowRight';
+import kebabCase from 'lodash/kebabCase';
 import {
   withSection,
   withTitle,
@@ -20,7 +21,7 @@ class PersonInfo extends Component {
     person: PropTypes.object.isRequired
   };
 
-  state = { selectedTab: 'publications' };
+  state = { selectedTab: 'projects' };
 
   selectTab = tab => {
     if (this.state.selectedTab !== tab) {
@@ -30,14 +31,21 @@ class PersonInfo extends Component {
 
   render() {
     const {
-      db: { publications },
+      db: { projects, publications },
       person
     } = this.props;
+
     const publicationsByAuthor = getDataById(
       publications,
       'authors',
       person.id
-    );
+    ).reverse();
+
+    const projectsByAuthor = getDataById(
+      projects,
+      'members',
+      person.id
+    ).reverse();
 
     return (
       <div className="section">
@@ -86,7 +94,7 @@ class PersonInfo extends Component {
                           className="display_inline_block bg_grey margin_right_20 border_1_solid_grey first_font padding_8 border_radius_3 font_size_13"
                           onClick={() => this.selectTab('projects')}
                         >
-                          5
+                          {projectsByAuthor.length}
                         </span>
                       </h4>
                     </li>
@@ -136,96 +144,38 @@ class PersonInfo extends Component {
                   >
                     <div className="section">
                       <div className="section">
-                        <div className="width_25_percentage width_50_percentage_all_iphone padding_20 float_left box_sizing_border_box">
-                          <div className="section box_sizing_border_box">
-                            <div className="section position_relative">
-                              <img
-                                alt=""
-                                className="section"
-                                src="/img/avatar/avatar-chef-2.png"
-                              />
-                              <div className="bg_greydark_alpha_gradient_3 position_absolute left_0 height_100_percentage width_100_percentage box_sizing_border_box">
-                                <div className="position_absolute bottom_20 width_100_percentage padding_botttom_0 padding_20 box_sizing_border_box text_align_center">
-                                  <h5 className="color_white">
-                                    <strong>Jane Goleman</strong>
-                                  </h5>
+                        {projectsByAuthor.map((project, i) => (
+                          <div
+                            key={i}
+                            style={{ clear: i % 3 === 0 ? 'both' : 'none' }}
+                            className="width_33_percentage width_100_percentage_all_iphone padding_20 float_left box_sizing_border_box"
+                          >
+                            <div className="section box_sizing_border_box">
+                              <div className="section position_relative">
+                                <img
+                                  alt=""
+                                  className="section"
+                                  src="/img/avatar/avatar-chef-2.png"
+                                />
+                                <div className="bg_greydark_alpha_gradient_3 position_absolute left_0 height_100_percentage width_100_percentage box_sizing_border_box">
+                                  <div className="position_absolute bottom_20 width_100_percentage padding_botttom_0 padding_20 box_sizing_border_box text_align_center">
+                                    <h5 className="color_white">
+                                      <DataLink
+                                        to={`/projects/${kebabCase(
+                                          project.name
+                                        )}-${project.id}`}
+                                      >
+                                        <strong style={{ color: 'white' }}>
+                                          {project.name}
+                                        </strong>
+                                      </DataLink>
+                                    </h5>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="width_25_percentage width_50_percentage_all_iphone padding_20 float_left box_sizing_border_box">
-                          <div className="section box_sizing_border_box">
-                            <div className="section position_relative">
-                              <img
-                                alt=""
-                                className="section"
-                                src="/img/avatar/avatar-chef-3.png"
-                              />
-                              <div className="bg_greydark_alpha_gradient_3 position_absolute left_0 height_100_percentage width_100_percentage box_sizing_border_box">
-                                <div className="position_absolute bottom_20 width_100_percentage padding_botttom_0 padding_20 box_sizing_border_box text_align_center">
-                                  <h5 className="color_white">
-                                    <strong>Jane Mgrayan</strong>
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="width_25_percentage width_50_percentage_all_iphone padding_20 float_left box_sizing_border_box">
-                          <div className="section box_sizing_border_box">
-                            <div className="section position_relative">
-                              <img
-                                alt=""
-                                className="section"
-                                src="/img/avatar/avatar-chef-4.png"
-                              />
-                              <div className="bg_greydark_alpha_gradient_3 position_absolute left_0 height_100_percentage width_100_percentage box_sizing_border_box">
-                                <div className="position_absolute bottom_20 width_100_percentage padding_botttom_0 padding_20 box_sizing_border_box text_align_center">
-                                  <h5 className="color_white">
-                                    <strong>Jack Johnson</strong>
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="width_25_percentage width_50_percentage_all_iphone padding_20 float_left box_sizing_border_box">
-                          <div className="section box_sizing_border_box">
-                            <div className="section position_relative">
-                              <img
-                                alt=""
-                                className="section"
-                                src="/img/avatar/avatar-chef-5.png"
-                              />
-                              <div className="bg_greydark_alpha_gradient_3 position_absolute left_0 height_100_percentage width_100_percentage box_sizing_border_box">
-                                <div className="position_absolute bottom_20 width_100_percentage padding_botttom_0 padding_20 box_sizing_border_box text_align_center">
-                                  <h5 className="color_white">
-                                    <strong>Nick Hopiness</strong>
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="width_25_percentage width_50_percentage_all_iphone padding_20 float_left box_sizing_border_box">
-                          <div className="section box_sizing_border_box">
-                            <div className="section position_relative">
-                              <img
-                                alt=""
-                                className="section"
-                                src="/img/avatar/avatar-chef-6.png"
-                              />
-                              <div className="bg_greydark_alpha_gradient_3 position_absolute left_0 height_100_percentage width_100_percentage box_sizing_border_box">
-                                <div className="position_absolute bottom_20 width_100_percentage padding_botttom_0 padding_20 box_sizing_border_box text_align_center">
-                                  <h5 className="color_white">
-                                    <strong>Steve Morgan</strong>
-                                  </h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -339,5 +289,6 @@ class PersonInfo extends Component {
 export default flowRight(
   withTitle({ path: 'person.name' }),
   withSection('person-info'),
+  withGoogleSheets('projects'),
   withGoogleSheets('publications')
 )(PersonInfo);
