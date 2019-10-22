@@ -1,10 +1,10 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
 import { withSection } from '../../components';
-//import { DataLink, GridTable, withGoogleSheets } from '../../components';
+import { withGoogleSheets } from '../../components';
 
-const Values = () => (
+const Values = ({ db: { aboutus } }) => (
   <div className="section">
     <div className="container clearfix">
       <div className="grid grid_1 ">
@@ -15,15 +15,11 @@ const Values = () => (
         <div className="padding_20">
           <h1 className="font_size_40">
             <strong>
-              <span className="color_f1f1f1">01.</span> Experience
+              <span className="color_f1f1f1">01.</span> {aboutus[0].value_1}
             </strong>
           </h1>
           <div className="section height_20"></div>
-          <p>
-            Phasellus enim libero, blandit vel sapien vitae, condimentum
-            ultricies magna et. Quisque euismod orci ut et lobortis. Blandit vel
-            sapien vitae, condimentum ultricies magna et orci ut et lobortis.
-          </p>
+          <p>{aboutus[0].value_1_text}</p>
         </div>
       </div>
 
@@ -31,15 +27,11 @@ const Values = () => (
         <div className="padding_20">
           <h1 className="font_size_40">
             <strong>
-              <span className="color_f1f1f1">02.</span> Professionality
+              <span className="color_f1f1f1">02.</span> {aboutus[0].value_2}
             </strong>
           </h1>
           <div className="section height_20"></div>
-          <p>
-            Phasellus enim libero, blandit vel sapien vitae, condimentum
-            ultricies magna et. Quisque euismod orci ut et lobortis. Blandit vel
-            sapien vitae, condimentum ultricies magna et orci ut et lobortis.
-          </p>
+          <p>{aboutus[0].value_2_text}</p>
         </div>
       </div>
 
@@ -57,15 +49,11 @@ const Values = () => (
         <div className="padding_20">
           <h1 className="font_size_40">
             <strong>
-              <span className="color_f1f1f1">03.</span> Experience
+              <span className="color_f1f1f1">03.</span> {aboutus[0].value_3}
             </strong>
           </h1>
           <div className="section height_20"></div>
-          <p>
-            Phasellus enim libero, blandit vel sapien vitae, condimentum
-            ultricies magna et. Quisque euismod orci ut et lobortis. Blandit vel
-            sapien vitae, condimentum ultricies magna et orci ut et lobortis.
-          </p>
+          <p>{aboutus[0].value_3_text}</p>
         </div>
       </div>
 
@@ -73,15 +61,11 @@ const Values = () => (
         <div className="padding_20">
           <h1 className="font_size_40">
             <strong>
-              <span className="color_f1f1f1">04.</span> Professionality
+              <span className="color_f1f1f1">04.</span> {aboutus[0].value_4}
             </strong>
           </h1>
           <div className="section height_20"></div>
-          <p>
-            Phasellus enim libero, blandit vel sapien vitae, condimentum
-            ultricies magna et. Quisque euismod orci ut et lobortis. Blandit vel
-            sapien vitae, condimentum ultricies magna et orci ut et lobortis.
-          </p>
+          <p>{aboutus[0].value_4_text}</p>
         </div>
       </div>
 
@@ -92,7 +76,13 @@ const Values = () => (
   </div>
 );
 
+Values.propTypes = {
+  db: PropTypes.shape({
+    aboutus: PropTypes.arrayOf(PropTypes.object)
+  })
+};
+
 export default flowRight(
-  //withGoogleSheets('executive_committee'),
+  withGoogleSheets('aboutus'),
   withSection('about-us-values')
 )(Values);

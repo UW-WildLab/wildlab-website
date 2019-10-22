@@ -2,7 +2,12 @@ section#faq-questions h1 {
   margin-top: 30px;
 }
 
+section#faq-questions a {
+  color: navy;
+}
+
 section#faq-questions p {
   text-align: left;
   margin: 20px 0;
+  color: #444;
 }

@@ -1,7 +1,9 @@
 import React from 'react';
 import filter from 'lodash/filter';
 import kebabCase from 'lodash/kebabCase';
+import orderBy from 'lodash/orderBy';
 import isUndefined from 'lodash/isUndefined';
+import moment from 'moment';
 import { DataLink } from './components';
 
 export const filterDatabaseByType = (db, type, index) =>
@@ -61,4 +63,19 @@ export const displayAuthors = authors =>
     })
   ) : (
     <span style={{ color: '#999' }}>No authors found</span>
+  );
+
+export const orderByDate = (data, key = 'date') =>
+  orderBy(
+    data.map(n => {
+      const date = moment(n[key], 'MM/DD/YYYY');
+
+      return {
+        ...n,
+        date: date.format('Do MMMM YYYY'),
+        timestamp: date.format('x')
+      };
+    }),
+    ['timestamp'],
+    ['desc']
   );

@@ -32,7 +32,13 @@
 }
 
 #home-banner .custom-news-section p .news-title {
+  color: #ddd;
   font-weight: bold;
+}
+
+#home-banner .custom-news-section p a {
+  color: white;
+  font-size: 20px;
 }
 
 @media only screen and (max-width: 767px) and (min-width: 480px) {
