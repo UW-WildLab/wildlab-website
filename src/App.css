@@ -25,3 +25,17 @@ section.bg {
 .custom-full-width-element {
   margin-top: 30px;
 }
+
+@font-face {
+  font-family: 'Blur Medium';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/blur_medium.ttf') format('truetype');
+}
+
+.logo-font {
+  font-family: 'Blur Medium';
+  color: white;
+  font-size: 30px;
+  line-height: 1;
+}

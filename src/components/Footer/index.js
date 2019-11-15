@@ -1,10 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import MenuItems from '../Navigation/MenuItems';
-
-//import './Footer.css';
-
-import logo from '../../images/logo.png';
+import Logo from '../Navigation/Logo';
 
 const Footer = () => (
   <footer className="footer">
@@ -14,13 +10,11 @@ const Footer = () => (
       <div className="container clearfix">
         <div className="grid grid_12 text_align_center">
           <div className="section">
-            <Link to="index.html">
-              <img alt="" width="200" className="" src={logo} />
-            </Link>
+            <Logo />
           </div>
         </div>
       </div>
-      <div className="section height_50"></div>
+      <div className="section height_30"></div>
     </div>
     <div className="section bg_greydark">
       <div className="container clearfix border_top_1_solid_greydark">

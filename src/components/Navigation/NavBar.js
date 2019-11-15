@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
-import DataLink from './DataLink';
 import MenuItems from './MenuItems';
-
-import logo from '../../images/logo.png';
+import Logo from './Logo';
 
 import './NavBar.css';
 
@@ -39,14 +36,7 @@ class NavBar extends Component {
             <div className="container clearfix position_relative">
               <div className="grid grid_12 display_none_all_responsive">
                 <div className="section height_10"></div>
-                <DataLink to="/home">
-                  <img
-                    alt=""
-                    className="position_absolute left_15 top_20"
-                    width="170"
-                    src={logo}
-                  />
-                </DataLink>
+                <Logo />
                 <div className="navigation_2 text_align_right float_right display_none_all_responsive">
                   <MenuItems />
                 </div>
@@ -54,9 +44,7 @@ class NavBar extends Component {
               </div>
               <div className="width_50_percentage text_align_center_all_iphone width_100_percentage_all_iphone float_left display_none display_block_responsive">
                 <div className="section height_20"></div>
-                <DataLink to="index.html">
-                  <img alt="" width="170" className="" src={logo} />
-                </DataLink>
+                <Logo />
               </div>
               <div className="width_50_percentage width_100_percentage_all_iphone float_left display_none display_block_responsive">
                 <div className="section height_20"></div>
