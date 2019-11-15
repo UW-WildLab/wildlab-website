@@ -9,7 +9,7 @@ import {
   DataLink,
   withGoogleSheets
 } from '../../components';
-import { getDataById } from '../../utils';
+import { convertDriveUrlToPhotoUrl, getDataById } from '../../utils';
 
 import './PersonInfo.css';
 
@@ -215,6 +215,14 @@ class PersonInfo extends Component {
           </div>
           <div className="width_33_percentage width_100_percentage_responsive float_left">
             <div className="section padding_15 box_sizing_border_box">
+              <img
+                alt={person.name}
+                className="section"
+                src={
+                  convertDriveUrlToPhotoUrl(person.photo_url) ||
+                  '/img/avatar/avatar-chef-5.png'
+                }
+              />
               <table className="person-info-table section">
                 <tbody>
                   {person.email && (

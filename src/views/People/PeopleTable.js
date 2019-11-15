@@ -4,6 +4,7 @@ import flowRight from 'lodash/flowRight';
 import kebabCase from 'lodash/kebabCase';
 import { DataLink, withSection } from '../../components';
 import { withGoogleSheets } from '../../components';
+import { convertDriveUrlToPhotoUrl } from '../../utils';
 
 import './PeopleTable.css';
 
@@ -21,9 +22,12 @@ const PeopleTable = ({ db: { people } }) => (
               <div className="section ">
                 <div className="section position_relative">
                   <img
-                    alt=""
+                    alt={p.name}
                     className="section"
-                    src="/img/avatar/avatar-chef-5.png"
+                    src={
+                      convertDriveUrlToPhotoUrl(p.photo_url) ||
+                      '/img/avatar/avatar-chef-5.png'
+                    }
                   />
 
                   <div className="bg_greydark_alpha_gradient position_absolute left_0 height_100_percentage width_100_percentage padding_20 box_sizing_border_box">

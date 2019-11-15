@@ -79,3 +79,8 @@ export const orderByDate = (data, key = 'date') =>
     ['timestamp'],
     ['desc']
   );
+
+export const convertDriveUrlToPhotoUrl = url =>
+  url
+    ? `http://drive.google.com/uc?export=view&id=${url.split('id=')[1]}`
+    : null;
