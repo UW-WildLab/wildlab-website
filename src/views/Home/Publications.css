@@ -1,0 +1,13 @@
+.home-publications .section {
+  clear: both;
+  padding: 6px 5px;
+}
+
+.home-publications h3 a {
+  font-size: 20px;
+  color: #68b78c;
+}
+
+.home-publications .home-publication-authors {
+  color: #777;
+}

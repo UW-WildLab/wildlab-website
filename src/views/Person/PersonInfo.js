@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import flowRight from 'lodash/flowRight';
+import orderBy from 'lodash/orderBy';
 import kebabCase from 'lodash/kebabCase';
 import {
   withSection,
@@ -35,11 +36,13 @@ class PersonInfo extends Component {
       person
     } = this.props;
 
-    const publicationsByAuthor = getDataById(
-      publications,
-      'authors',
-      person.id
-    ).reverse();
+    const publicationsByAuthor = orderBy(
+      publications.filter(p =>
+        p.authors.toLowerCase().includes(person.name.toLowerCase().trim())
+      ),
+      ['year', 'conference'],
+      ['desc', 'asc']
+    );
 
     const projectsByAuthor = getDataById(
       projects,

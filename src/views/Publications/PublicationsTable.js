@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
+import orderBy from 'lodash/orderBy';
 import { DataLink, withSection } from '../../components';
 import { withGoogleSheets } from '../../components';
-import { displayAuthors, getAuthors } from '../../utils';
+
+import './PublicationsTable.css';
 
 class PublicationsTable extends Component {
   static propTypes = {
     db: PropTypes.shape({
-      people: PropTypes.arrayOf(PropTypes.object),
       publications: PropTypes.arrayOf(PropTypes.object)
     })
   };
 
-  publications = this.props.db.publications.map(p => ({
-    ...p,
-    authors: getAuthors(this.props.db.people, p.authors),
-    authorNames: getAuthors(this.props.db.people, p.authors, false)
-  }));
+  publications = orderBy(
+    this.props.db.publications,
+    ['year', 'conference'],
+    ['desc', 'asc']
+  );
 
   constructor(props) {
     super(props);
@@ -34,7 +35,7 @@ class PublicationsTable extends Component {
           p =>
             p.title.toLowerCase().includes(value) ||
             p.conference.toLowerCase().includes(value) ||
-            p.authorNames.some(a => a.toLowerCase().includes(value))
+            p.authors.toLowerCase().includes(value)
         ),
         searchQuery: value
       });
@@ -66,43 +67,28 @@ class PublicationsTable extends Component {
             </div>
 
             <div className="width_100_percentage">
-              {publications.reverse().map((p, i) => (
-                <div
-                  key={p.id}
-                  style={{ clear: i % 3 === 0 ? 'both' : 'none' }}
-                  className="width_33_percentage width_100_percentage_responsive float_left"
-                >
+              {publications.map(p => (
+                <div className="width_100_percentage_responsive" key={p.id}>
                   <div className="section padding_15 box_sizing_border_box">
-                    <div className="section border_1_solid_grey">
-                      <div className="section position_relative">
-                        <img
-                          alt=""
-                          className="section"
-                          src="/img/courses/img2.png"
-                        />
-                        <div className="bg_greydark_alpha position_absolute left_0 height_100_percentage width_100_percentage padding_30 box_sizing_border_box"></div>
-                        {p.best_paper === 'Y' && (
-                          <DataLink
-                            className="position_absolute right_20 top_20 display_inline_block color_white bg_green first_font padding_8 border_radius_3 font_size_13 z_index_9"
-                            to={p.url}
-                          >
-                            BEST PAPER
-                          </DataLink>
-                        )}
-                      </div>
-
-                      <div className="section padding_20 box_sizing_border_box">
-                        <h3>
+                    <div className="section">
+                      <div className="section box_sizing_border_box">
+                        <h3 style={{ marginBottom: '10px' }}>
                           <DataLink
                             className="color_greydark first_font"
                             to={p.url}
                           >
-                            {p.title}
+                            {`(${p.conference} ${p.year}) ${p.title}`}
+                            {p.best_paper === 'Y' && (
+                              <DataLink
+                                className="margin_left_10 display_inline_block color_white bg_green first_font padding_8 border_radius_3 font_size_13 z_index_9"
+                                to="#"
+                              >
+                                BEST PAPER
+                              </DataLink>
+                            )}
                           </DataLink>
                         </h3>
-                      </div>
-                      <div className="section padding_10_20 box_sizing_border_box bg_grey border_top_1_solid_grey text_align_center">
-                        {displayAuthors(p.authors)}
+                        <div className="publication-authors">{p.authors}</div>
                       </div>
                     </div>
                   </div>
@@ -118,6 +104,5 @@ class PublicationsTable extends Component {
 
 export default flowRight(
   withGoogleSheets('publications'),
-  withGoogleSheets('people'),
   withSection('publications-table')
 )(PublicationsTable);
