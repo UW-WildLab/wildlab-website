@@ -1,0 +1,13 @@
+#publications-table .section {
+  clear: both;
+  padding: 6px 5px;
+}
+
+#publications-table h3 a {
+  font-size: 20px;
+  color: #68b78c;
+}
+
+#publications-table .publication-authors {
+  color: #777;
+}
