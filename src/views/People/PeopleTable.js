@@ -30,7 +30,7 @@ const PeopleTable = ({ db: { people } }) => (
                     }
                   />
 
-                  <div className="bg_greydark_alpha_gradient position_absolute left_0 height_100_percentage width_100_percentage padding_20 box_sizing_border_box">
+                  <div className="img-div bg_greydark_alpha_gradient position_absolute left_0 height_100_percentage width_100_percentage padding_20 box_sizing_border_box">
                     <div className="position_absolute bottom_20"></div>
                   </div>
                 </div>

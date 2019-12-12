@@ -5,3 +5,8 @@
 #people-table .grid .designation {
   padding-bottom: 15px;
 }
+
+#people-table img,
+#people-table .img-div {
+  border-radius: 5px;
+}

@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import random from 'lodash/random';
 import withSection from '../HOC/withSection';
-// import {
-//   Button,
-//   DataLink,
-//   withSection
-// } from '../../components';
+import { getBannerImages } from '../../utils';
 
 import './MiniBanner.css';
+
+const miniBannerImages = getBannerImages('mini');
+const miniBannerImage =
+  miniBannerImages[random(0, miniBannerImages.length - 1)];
 
 const MiniBanner = ({ title }) => (
   <div
     className="section background_size_cover background_position_center_bottom"
-    style={{ backgroundImage: 'url(img/parallax/img40.png)' }}
+    style={{ backgroundImage: `url('${miniBannerImage}')` }}
   >
     <div className="section bg_greydark_alpha_gradient_2">
       <div className="container clearfix">

@@ -84,3 +84,10 @@ export const convertDriveUrlToPhotoUrl = url =>
   url
     ? `http://drive.google.com/uc?export=view&id=${url.split('id=')[1]}`
     : null;
+
+export const getBannerImages = type =>
+  require
+    .context('../public/banner', true)
+    .keys()
+    .filter(i => i.includes(type))
+    .map(i => i.replace('./', '/banner/'));
