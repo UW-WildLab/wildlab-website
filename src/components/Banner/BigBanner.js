@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
 import kebabCase from 'lodash/kebabCase';
+import random from 'lodash/random';
 import DataLink from '../Navigation/DataLink';
 import withGoogleSheets from '../HOC/withGoogleSheets';
 import withSection from '../HOC/withSection';
@@ -9,9 +10,19 @@ import { orderByDate } from '../../utils';
 
 import './BigBanner.css';
 
+const bigBannerImages = require
+  .context('../../../public/banner/big')
+  .keys()
+  .map(i => i.replace('./', '/banner/big/'));
+
+const bigBannerImage = bigBannerImages[random(0, bigBannerImages.length - 1)];
+
 const BigBanner = ({ db: { home, news } }) => {
   return (
-    <div className="section background_size_cover background_position_center banner-container">
+    <div
+      className="section background_size_cover background_position_center banner-container"
+      style={{ backgroundImage: `url('${bigBannerImage}')` }}
+    >
       <div className="section bg_greydark_alpha_gradient_2">
         <div className="section height_570"></div>
         <div className="container clearfix">
