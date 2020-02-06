@@ -75,7 +75,7 @@ class PublicationsTable extends Component {
                         <h3 style={{ marginBottom: '10px' }}>
                           <DataLink
                             className="color_greydark first_font"
-                            to={p.url}
+                            to={p.url || '#'}
                           >
                             {`(${p.conference} ${p.year}) ${p.title}`}
                             {p.best_paper === 'Y' && (

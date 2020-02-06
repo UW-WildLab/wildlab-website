@@ -68,7 +68,9 @@ const Projects = ({ db: { projects } }) => {
                     {highlightedProject.name}
                   </DataLink>
                 </h3>
-                <p>{highlightedProject.description}</p>
+                <p>
+                  {highlightedProject.description.substring(0, 175) + '...'}
+                </p>
               </div>
             </div>
           </div>

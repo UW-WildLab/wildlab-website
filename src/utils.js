@@ -11,10 +11,13 @@ export const filterDatabaseByType = (db, type, index) =>
     ? filter(db, d => d.type === type)
     : filter(db, d => d.type === type)[index];
 
-export const getDataByForeignKey = (table, ids = []) =>
-  JSON.parse(ids)
+export const getDataByForeignKey = (table, ids) => {
+  ids = ids == null || ids.trim() === '' ? '[]' : ids;
+
+  return JSON.parse(ids)
     .map(id => table.find(t => t.id === id.toString()))
     .filter(f => f);
+};
 
 export const getAuthors = (people, ids = [], component = true) =>
   getDataByForeignKey(people, ids).map(d =>
@@ -27,7 +30,7 @@ export const getAuthors = (people, ids = [], component = true) =>
     )
   );
 
-export const getPublications = (publications, ids = []) =>
+export const getPublications = (publications = [], ids) =>
   getDataByForeignKey(publications, ids).map(d => d.title.trim());
 
 export const formatPublicationsTitle = publications =>

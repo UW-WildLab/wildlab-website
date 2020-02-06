@@ -14,15 +14,13 @@ class ProjectsTable extends Component {
     })
   };
 
-  projects = this.props.db.projects.map(p => ({
-    ...p,
-    publications: getPublications(
-      this.props.db.publications,
-      p.publications,
-      false
-    ),
-    members: getAuthors(this.props.db.people, p.members, false)
-  }));
+  projects = this.props.db.projects
+    .map(p => ({
+      ...p,
+      publications: getPublications(this.props.db.publications, p.publications),
+      members: getAuthors(this.props.db.people, p.members, false)
+    }))
+    .filter(p => p.id && p.name);
 
   constructor(props) {
     super(props);
