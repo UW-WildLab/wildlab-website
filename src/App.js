@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import GoogleSheetsProvider from 'react-db-google-sheets';
 import Routes from './Routes';
-import { Footer, GoogleSheetsProvider, NavBar } from './components';
+import { Footer, NavBar } from './components';
 
 import './App.css';
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
+import { withGoogleSheets } from 'react-db-google-sheets';
 import { DataLink, withSection, withTitle } from '../../components';
-import { withGoogleSheets } from '../../components';
 import { getAuthors, getDataByForeignKey } from '../../utils';
 
 import './ProjectInfo.css';

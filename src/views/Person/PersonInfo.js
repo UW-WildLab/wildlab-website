@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { withGoogleSheets } from 'react-db-google-sheets';
 import flowRight from 'lodash/flowRight';
 import orderBy from 'lodash/orderBy';
 import kebabCase from 'lodash/kebabCase';
-import {
-  withSection,
-  withTitle,
-  DataLink,
-  withGoogleSheets
-} from '../../components';
+import { withSection, withTitle, DataLink } from '../../components';
 import { convertDriveUrlToPhotoUrl, getDataById } from '../../utils';
 
 import './PersonInfo.css';

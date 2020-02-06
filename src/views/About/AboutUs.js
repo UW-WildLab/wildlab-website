@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
-import { withGoogleSheets, withSection } from '../../components';
+import { withGoogleSheets } from 'react-db-google-sheets';
+import { withSection } from '../../components';
 
 const AboutUs = ({ db: { aboutus } }) => (
   <div className="section">

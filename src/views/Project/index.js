@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { withGoogleSheets } from 'react-db-google-sheets';
 import find from 'lodash/find';
 import flowRight from 'lodash/flowRight';
 import ProjectInfo from './ProjectInfo';
 import NoMatch from '../NoMatch';
-import { MiniBanner, withGoogleSheets } from '../../components';
+import { MiniBanner } from '../../components';
 
 class Project extends Component {
   static propTypes = {

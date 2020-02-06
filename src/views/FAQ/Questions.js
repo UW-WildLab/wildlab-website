@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import flowRight from 'lodash/flowRight';
-import { withGoogleSheets, withSection } from '../../components';
+import { withGoogleSheets } from 'react-db-google-sheets';
+import { withSection } from '../../components';
 
 import './Questions.css';
 

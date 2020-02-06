@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
 import kebabCase from 'lodash/kebabCase';
-import { DataLink, withGoogleSheets, withSection } from '../../components';
+import { withGoogleSheets } from 'react-db-google-sheets';
+import { DataLink, withSection } from '../../components';
 import { getAuthors, getPublications } from '../../utils';
 
 class ProjectsTable extends Component {

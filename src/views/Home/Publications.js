@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
 import orderBy from 'lodash/orderBy';
+import { withGoogleSheets } from 'react-db-google-sheets';
 import { DataLink, withSection } from '../../components';
-import { withGoogleSheets } from '../../components';
 
 import './Publications.css';
 

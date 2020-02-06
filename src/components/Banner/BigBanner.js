@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
 import kebabCase from 'lodash/kebabCase';
 import random from 'lodash/random';
+import { withGoogleSheets } from 'react-db-google-sheets';
 import DataLink from '../Navigation/DataLink';
-import withGoogleSheets from '../HOC/withGoogleSheets';
 import withSection from '../HOC/withSection';
 import { getBannerImages, orderByDate } from '../../utils';
 
