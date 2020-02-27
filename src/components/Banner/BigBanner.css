@@ -3,9 +3,13 @@
   position: relative;
 }
 
+#home-banner .small-text {
+  font-size: 20px;
+}
+
 #home-banner .custom-news-section {
   position: absolute;
-  top: 10%;
+  top: 7%;
   right: 0;
   z-index: 9999;
   float: right;
@@ -15,8 +19,9 @@
 }
 
 #home-banner .custom-news-section p {
-  color: white;
+  color: #eee;
   margin: 15px 0;
+  font-size: 14px;
 }
 
 #home-banner .custom-news-section p:first-of-type {
@@ -34,7 +39,7 @@
 
 #home-banner .custom-news-section p a {
   color: white;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 @media only screen and (max-width: 767px) and (min-width: 480px) {
