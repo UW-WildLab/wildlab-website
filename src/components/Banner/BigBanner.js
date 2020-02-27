@@ -26,7 +26,7 @@ const BigBanner = ({ db: { home, news } }) => (
             {home[0].banner_big_text}
           </strong>
           <div className="section ">
-            <strong className="color_white font_size_30 first_font">
+            <strong className="color_white font_size_30 first_font small-text">
               {home[0].banner_small_text}
             </strong>
           </div>
