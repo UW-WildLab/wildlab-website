@@ -4,7 +4,11 @@ import flowRight from 'lodash/flowRight';
 import kebabCase from 'lodash/kebabCase';
 import { withGoogleSheets } from 'react-db-google-sheets';
 import { DataLink, withSection } from '../../components';
-import { getAuthors, getPublications } from '../../utils';
+import {
+  getAuthors,
+  getPublications,
+  convertDriveUrlToPhotoUrl
+} from '../../utils';
 
 class ProjectsTable extends Component {
   static propTypes = {
@@ -18,8 +22,11 @@ class ProjectsTable extends Component {
   projects = this.props.db.projects
     .map(p => ({
       ...p,
-      publications: getPublications(this.props.db.publications, p.publications),
-      members: getAuthors(this.props.db.people, p.members, false)
+      publications: getPublications(
+        this.props.db.publications,
+        p.publications || '[]'
+      ),
+      members: getAuthors(this.props.db.people, p.members || '[]', false)
     }))
     .filter(p => p.id && p.name);
 
@@ -82,7 +89,10 @@ class ProjectsTable extends Component {
                         <img
                           alt=""
                           className="section"
-                          src="/img/courses/img2.png"
+                          src={
+                            convertDriveUrlToPhotoUrl(p.url) ||
+                            '/img/courses/img2.png'
+                          }
                         />
                       </div>
                       <div className="section padding_20 box_sizing_border_box text_align_center">

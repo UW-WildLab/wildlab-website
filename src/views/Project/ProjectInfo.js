@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
 import { withGoogleSheets } from 'react-db-google-sheets';
 import { DataLink, withSection, withTitle } from '../../components';
-import { getAuthors, getDataByForeignKey } from '../../utils';
+import {
+  getAuthors,
+  getDataByForeignKey,
+  convertDriveUrlToPhotoUrl
+} from '../../utils';
 
 import './ProjectInfo.css';
 
@@ -43,7 +47,14 @@ class ProjectInfo extends Component {
           <div className="section padding_15 box_sizing_border_box">
             <div className="width_50_percentage width_100_percentage_responsive float_left padding_top_10">
               <div className="section position_relative">
-                <img alt="" className="section" src="/img/courses/img1.png" />
+                <img
+                  alt=""
+                  className="section"
+                  src={
+                    convertDriveUrlToPhotoUrl(project.url) ||
+                    '/img/courses/img2.png'
+                  }
+                />
               </div>
             </div>
 
@@ -147,7 +158,14 @@ class ProjectInfo extends Component {
                               <img
                                 alt=""
                                 className="section"
-                                src="/img/avatar/avatar-chef-2.png"
+                                src={
+                                  convertDriveUrlToPhotoUrl(
+                                    (
+                                      people.find(p => p.id === author.key) ||
+                                      {}
+                                    ).photo_url
+                                  ) || '/img/avatar/avatar-chef-2.png'
+                                }
                               />
                               <div className="bg_greydark_alpha_gradient_3 position_absolute left_0 height_100_percentage width_100_percentage box_sizing_border_box">
                                 <div className="position_absolute bottom_20 width_100_percentage padding_botttom_0 padding_20 box_sizing_border_box text_align_center project-info-author">
