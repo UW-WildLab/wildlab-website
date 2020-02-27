@@ -76,7 +76,10 @@ const Projects = ({ db: { projects } }) => {
           </div>
         </div>
         <div className="section text_align_center custom-full-width-element">
-          <p>The projects are made possible by the funding from X, Y, Z.</p>
+          <p>
+            The projects are made possible by the funding from the NSF,
+            Microsoft, Adobe, Google, and Facebook.
+          </p>
         </div>
         <div className="section text_align_center custom-full-width-element">
           <DataLink
