@@ -19,7 +19,7 @@ const BigBanner = ({ db: { home, news } }) => (
     style={{ backgroundImage: `url('${bigBannerImage}')` }}
   >
     <div className="section bg_greydark_alpha_gradient_2">
-      <div className="section height_570"></div>
+      <div className="section height_570 reduced-height"></div>
       <div className="container clearfix">
         <div className="grid grid_12 custom-banner-title">
           <strong className="color_white font_size_60 first_font">
@@ -32,14 +32,16 @@ const BigBanner = ({ db: { home, news } }) => (
           </div>
         </div>
         <div className="grid grid_12 custom-news-section">
-          {orderByDate(news).map(n => (
-            <p key={n.id}>
-              <span className="news-title">{n.date}. </span>
-              <DataLink to={`/news/${kebabCase(n.title)}-${n.id}`}>
-                {n.title}
-              </DataLink>
-            </p>
-          ))}
+          {orderByDate(news)
+            .slice(0, 4)
+            .map(n => (
+              <p key={n.id}>
+                <span className="news-title">{n.date}. </span>
+                <DataLink to={`/news/${kebabCase(n.title)}-${n.id}`}>
+                  {n.title}
+                </DataLink>
+              </p>
+            ))}
         </div>
       </div>
       <div className="section height_50"></div>

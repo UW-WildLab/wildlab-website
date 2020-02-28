@@ -3,13 +3,21 @@
   position: relative;
 }
 
+#home-banner .banner-container .reduced-height {
+  height: 405px !important;
+}
+
+#home-banner .custom-banner-title > strong {
+  font-size: 50px;
+}
+
 #home-banner .small-text {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 #home-banner .custom-news-section {
   position: absolute;
-  top: 7%;
+  top: 3%;
   right: 0;
   z-index: 9999;
   float: right;
