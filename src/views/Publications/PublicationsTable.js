@@ -78,9 +78,9 @@ class PublicationsTable extends Component {
                             to={p.url || '#'}
                           >
                             {`(${p.conference} ${p.year}) ${p.title}`}
-                            {p.best_paper === 'Y' && (
-                              <span className="margin_left_10 display_inline_block color_white bg_green first_font padding_8 border_radius_3 font_size_13 z_index_9">
-                                BEST PAPER
+                            {p.award && p.award.trim() !== '' && (
+                              <span className="paper-award margin_left_10 display_inline_block color_white bg_green first_font padding_8 border_radius_3 font_size_13 z_index_9">
+                                {p.award}
                               </span>
                             )}
                           </DataLink>

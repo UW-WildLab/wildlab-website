@@ -8,6 +8,12 @@
   color: #68b78c;
 }
 
+.home-publications .paper-award {
+  text-transform: uppercase;
+  padding: 4px 8px !important;
+  vertical-align: bottom;
+}
+
 .home-publications .home-publication-authors {
   color: #777;
 }
