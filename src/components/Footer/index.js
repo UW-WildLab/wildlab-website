@@ -24,7 +24,7 @@ const Footer = () => (
           </div>
         </div>
         <div className="grid grid_12 text_align_center text_align_center_responsive">
-          <p className="color_grey font_size_14">© Copyright 2019 WildLab</p>
+          <p className="color_grey font_size_14">© Copyright 2020 WildLab</p>
         </div>
       </div>
     </div>
