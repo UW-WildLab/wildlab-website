@@ -40,7 +40,7 @@ export const formatPublicationsTitle = publications =>
   }));
 
 export const getDataById = (table, field, id) =>
-  table.filter(t => JSON.parse(t[field]).includes(parseInt(id)));
+  table.filter(t => JSON.parse(t[field] || '[]').includes(parseInt(id)));
 
 export const displayAuthors = authors =>
   authors.length > 0 ? (

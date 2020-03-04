@@ -195,7 +195,7 @@ class ProjectInfo extends Component {
                   <div className="section">
                     {publicationsByProject.map(p => (
                       <div key={p.id} className="person-publications-table">
-                        <DataLink to={p.url}>
+                        <DataLink to={p.url || '#'}>
                           <strong>{p.title.trim()}</strong>
                         </DataLink>
                         <span className="conference-text">

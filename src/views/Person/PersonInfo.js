@@ -194,7 +194,7 @@ class PersonInfo extends Component {
                     <div className="section">
                       {publicationsByAuthor.map(p => (
                         <div key={p.id} className="person-publications-table">
-                          <DataLink to={p.url}>
+                          <DataLink to={p.url || '#'}>
                             <strong>{p.title.trim()}</strong>
                           </DataLink>
                           <span className="conference-text">

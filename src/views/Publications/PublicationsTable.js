@@ -79,12 +79,9 @@ class PublicationsTable extends Component {
                           >
                             {`(${p.conference} ${p.year}) ${p.title}`}
                             {p.best_paper === 'Y' && (
-                              <DataLink
-                                className="margin_left_10 display_inline_block color_white bg_green first_font padding_8 border_radius_3 font_size_13 z_index_9"
-                                to="#"
-                              >
+                              <span className="margin_left_10 display_inline_block color_white bg_green first_font padding_8 border_radius_3 font_size_13 z_index_9">
                                 BEST PAPER
-                              </DataLink>
+                              </span>
                             )}
                           </DataLink>
                         </h3>
