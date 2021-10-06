@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
 import { withGoogleSheets } from 'react-db-google-sheets';
 import { DataLink, withSection, withTitle } from '../../components';
-import {
-  getAuthors,
-  getDataByForeignKey,
-  convertDriveUrlToPhotoUrl
-} from '../../utils';
+import { convertDriveUrlToPhotoUrl, getAuthors } from '../../utils';
 
 import './ProjectInfo.css';
 
@@ -34,10 +30,9 @@ class ProjectInfo extends Component {
       project
     } = this.props;
 
-    const publicationsByProject = getDataByForeignKey(
-      publications,
-      project.publications
-    ).reverse();
+    const projectPublications = publications.filter(
+      p => p.project === project.name
+    );
 
     const authorsByProject = getAuthors(people, project.members);
 
@@ -97,7 +92,7 @@ class ProjectInfo extends Component {
                         className="display_inline_block bg_grey margin_right_20 border_1_solid_grey first_font padding_8 border_radius_3 font_size_13"
                         onClick={() => this.selectTab('publications')}
                       >
-                        {publicationsByProject.length}
+                        {projectPublications.length}
                       </span>
                     </h4>
                   </li>
@@ -193,7 +188,7 @@ class ProjectInfo extends Component {
                   }}
                 >
                   <div className="section">
-                    {publicationsByProject.map(p => (
+                    {projectPublications.map(p => (
                       <div key={p.id} className="person-publications-table">
                         <DataLink to={p.url || '#'}>
                           <strong>{p.title.trim()}</strong>
