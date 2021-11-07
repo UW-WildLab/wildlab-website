@@ -1,0 +1,260 @@
+#home-banner .banner-container .container {
+  margin-top: 100px;
+  position: relative;
+}
+#home-banner .small-text {
+  font-size: 20px;
+}
+#home-banner .custom-news-section {
+  position: absolute;
+  top: 7%;
+  right: 0;
+  z-index: 9999;
+  float: right;
+  width: 300px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+#home-banner .custom-news-section p {
+  color: #eee;
+  margin: 15px 0;
+  font-size: 14px;
+}
+#home-banner .custom-news-section p:first-of-type {
+  margin-top: 0;
+}
+#home-banner .custom-news-section p:last-of-type {
+  margin-bottom: 0;
+}
+#home-banner .custom-news-section p .news-title {
+  color: #ddd;
+  font-weight: 700;
+}
+#home-banner .custom-news-section p a {
+  color: #fff;
+  font-size: 16px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px) {
+  #home-banner .banner-container .container {
+    width: 100%;
+    max-width: none;
+    padding: 30px;
+    margin: 0;
+  }
+  #home-banner .custom-news-section {
+    display: none;
+  }
+}
+.mini-banner-title {
+  font-size: 45px;
+  line-height: 60px;
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+}
+.nav-menu-items {
+  text-transform: uppercase;
+}
+.logo {
+  font-size: 50px !important;
+}
+.navigation_2_sidebar .nav-menu-items li {
+  display: block;
+}
+button.btn {
+  margin-left: 15px;
+  margin-right: 15px;
+  background: transparent;
+  padding: 13px 35px;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 18px;
+  font-family: Nunito, sans-serif;
+  letter-spacing: 0.3rem;
+  color: #fff;
+  border: 2px solid;
+  border-radius: 3px;
+}
+button.btn:hover {
+  color: #fff;
+}
+button.btn.bg,
+button.btn:hover {
+  background-color: #374785;
+}
+button.btn.bg:hover {
+  background-color: initial;
+  color: #000;
+  border-color: #000;
+}
+button.btn.oval {
+  border-radius: 50px;
+}
+.custom-grid h1,
+.custom-grid h2,
+.custom-grid h3 {
+  text-align: center;
+}
+.custom-grid h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 60px;
+  font-weight: 600;
+  font-size: 40px;
+}
+.custom-grid h2 {
+  margin-bottom: 0;
+}
+.custom-grid h3 {
+  margin-bottom: 15px;
+}
+.custom-grid .picture {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+.custom-grid .picture img {
+  width: 100%;
+}
+.custom-grid .row.social-icons {
+  font-size: 17px;
+  padding: 0 5px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+.custom-grid .row.social-icons a {
+  margin: 0 5px;
+}
+.custom-grid .row.social-icons .fa {
+  width: 37px;
+  padding: 10px 5px;
+  color: #a8d0e6;
+  text-align: center;
+  background-color: #24305e;
+  border-radius: 50px;
+}
+@media (max-width: 768px) {
+  .custom-grid .picture {
+    height: 300px;
+  }
+}
+section#calendar .calendar {
+  height: 600px;
+  font-size: 10px;
+}
+.error-section {
+  text-align: center;
+}
+.error-section h1 {
+  color: #193c69;
+}
+.error-section p {
+  text-align: center;
+}
+section#faq-questions h1 {
+  margin-top: 30px;
+}
+section#faq-questions a {
+  color: navy;
+}
+section#faq-questions p {
+  text-align: left;
+  margin: 20px 0;
+  color: #444;
+}
+.home-publications .section {
+  clear: both;
+  padding: 6px 5px;
+}
+.home-publications h3 a {
+  font-size: 20px;
+  color: #68b78c;
+}
+.home-publications .paper-award {
+  text-transform: uppercase;
+  padding: 4px 8px !important;
+  vertical-align: bottom;
+}
+.home-publications .home-publication-authors {
+  color: #777;
+}
+.no-match h1 {
+  padding: 80px 0;
+  text-align: center;
+}
+#people-table .grid .people-name {
+  padding-top: 15px;
+}
+#people-table .grid .designation {
+  padding-bottom: 15px;
+}
+#people-table .img-div,
+#people-table img {
+  border-radius: 5px;
+}
+.person-info-table td {
+  word-break: break-all;
+}
+.person-publications-table {
+  margin-bottom: 20px;
+  padding-left: 20px;
+  font-size: 20px;
+}
+.person-publications-table:last-of-type {
+  margin-bottom: 0;
+}
+.person-publications-table .conference-text {
+  font-size: 15px;
+  color: #888;
+}
+#project-info .project-info-author a {
+  color: #fff;
+}
+#publications-table .section {
+  clear: both;
+  padding: 6px 5px;
+}
+#publications-table h3 a {
+  font-size: 20px;
+  color: #68b78c;
+}
+#publications-table .paper-award {
+  text-transform: uppercase;
+  padding: 4px 8px !important;
+  vertical-align: bottom;
+}
+#publications-table .publication-authors {
+  color: #777;
+}
+section {
+  display: flex;
+  padding-top: 30px;
+}
+section:last-of-type {
+  padding-bottom: 30px;
+}
+section.no-padding {
+  padding: 0;
+}
+section.bg {
+  background-color: #d0dde5;
+}
+.loading {
+  margin: 0 auto;
+}
+.custom-full-width-element {
+  margin-top: 30px;
+}
+@font-face {
+  font-family: Blur Medium;
+  font-style: normal;
+  font-weight: 400;
+  src: url(/wildlab-website/static/media/blur_medium.398f9fc2.ttf)
+    format('truetype');
+}
+.logo-font {
+  font-family: Blur Medium;
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+}
+/*# sourceMappingURL=main.70c28253.chunk.css.map */
